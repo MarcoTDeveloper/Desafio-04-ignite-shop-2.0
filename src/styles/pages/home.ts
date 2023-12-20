@@ -9,12 +9,24 @@ export const HomeContainer = styled('main', {
   minHeight: 656,
 })
 
+export const SliderContainer = styled('div', {
+  display: 'flex',
+  gap: '3rem',
+  margin: '0 auto', 
+
+  ".embla__slide": {
+    minWidth: '43.5rem',
+  },
+})
+
 export const Product = styled('div', {
   background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
   borderRadius: 8,
-  minWidth: 696,
   position: 'relative',
   overflow: 'hidden',
+  width: '100%',
+  minHeight: 656,
+
 
   display: 'flex',
   alignItems: 'center',

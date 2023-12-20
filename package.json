@@ -11,7 +11,7 @@
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.5",
     "@stitches/react": "^1.2.8",
-    "keen-slider": "^6.8.6",
+    "embla-carousel-react": "^8.0.0-rc15",
     "next": "14.0.4",
     "phosphor-react": "^1.4.1",
     "react": "^18",
