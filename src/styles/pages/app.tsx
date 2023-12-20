@@ -27,4 +27,9 @@ export const HeaderButton = styled('button', {
   padding: 12,
   borderRadius: 6,
   color: '$gray3',
+  transition: '0.2s filter',
+
+  '&:hover': {
+    filter: 'brightness(1.7)',
+  }
 })
