@@ -12,7 +12,7 @@ export const HomeContainer = styled('main', {
 export const Product = styled('div', {
   background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
   borderRadius: 8,
-  width: 696,
+  minWidth: 696,
   position: 'relative',
   overflow: 'hidden',
 
@@ -73,7 +73,7 @@ export const Product = styled('div', {
       display: 'flex',
       flexDirection: 'column',
       gap: 6
-    }
+    },
   },
 
   '&:hover': {
