@@ -22,7 +22,7 @@ export const Product = styled('div', {
   position: 'relative',
   overflow: 'hidden',
   width: '100%',
-  minHeight: 656,
+  minHeight: '41rem',
 
 
   display: 'flex',

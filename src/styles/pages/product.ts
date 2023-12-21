@@ -12,8 +12,8 @@ export const ProductContainer = styled('main', {
 
 export const ImageContainer = styled('div', {
   width: '100%',
-  maxWidth: 576,
-  height: 656,
+  maxWidth: '36rem',
+  height: '41rem',
   background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
   borderRadius: 8,
   padding: '0.25rem',
@@ -61,7 +61,12 @@ export const ProductDetails = styled('div', {
     fontSize: '$md',
     transition: '0.2s background-color',
 
-    '&:hover': {
+    '&:disabled': {
+      opacity: 0.6,
+      cursor: 'not-allowed',
+    },
+
+    '&:(:disabled):hover': {
       backgroundColor: '$green1'
     }
   }

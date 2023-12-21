@@ -6,6 +6,7 @@ import { stripe } from "@/lib/stripe";
 import Stripe from "stripe";
 import { GetStaticProps } from "next";
 import Link from "next/link";
+import Head from "next/head";
 
 interface HomeProps {
   products: {
@@ -24,34 +25,40 @@ export default function Home({ products }: HomeProps) {
   })
 
   return (
-    <div style={{ overflow: "hidden", width: "100%" }}>
-      <HomeContainer>
-        <div className="embla" ref={emblaRef}>
-          <SliderContainer className="embla__container container">
-            {products.map(product => {
-              return (
-                <Link key={product.id} href={`/product/${product.id}`} prefetch={false}>
-                  <Product className="embla__slide">
-                    <Image src={product.imageUrl} width={520} height={480} alt="" />
+    <>
+      <Head>
+        <title>Home | Ignite Shop</title>
+      </Head>
 
-                    <footer>
-                      <div>
-                        <strong>{product.name}</strong>
-                        <span>{product.price}</span>
-                      </div>
+      <div style={{ overflow: "hidden", width: "100%" }}>
+        <HomeContainer>
+          <div className="embla" ref={emblaRef}>
+            <SliderContainer className="embla__container container">
+              {products.map(product => {
+                return (
+                  <Link key={product.id} href={`/product/${product.id}`} prefetch={false}>
+                    <Product className="embla__slide">
+                      <Image src={product.imageUrl} width={520} height={480} alt="" />
 
-                      <button>
-                        <Handbag size={32} weight='bold' />
-                      </button>
-                    </footer>
-                  </Product>
-                </Link>
-              )
-            })}
-          </SliderContainer>
-        </div>
-      </HomeContainer>
-    </div>
+                      <footer>
+                        <div>
+                          <strong>{product.name}</strong>
+                          <span>{product.price}</span>
+                        </div>
+
+                        <button tabIndex={-1}>
+                          <Handbag size={32} weight='bold' />
+                        </button>
+                      </footer>
+                    </Product>
+                  </Link>
+                )
+              })}
+            </SliderContainer>
+          </div>
+        </HomeContainer>
+      </div>
+    </>
   )
 }
 
