@@ -1,3 +1,4 @@
+import { InfoProducts } from "@/contexts/CartContext";
 import { stripe } from "@/lib/stripe";
 import { ImageContainer, ProductContainer, ProductDetails } from "@/styles/pages/product";
 import axios from "axios";
@@ -9,14 +10,7 @@ import { useState } from "react";
 import Stripe from "stripe";
 
 interface ProductProps {
-  product: {
-    id: string;
-    name: string;
-    imageUrl: string;
-    price: string;
-    description: string;
-    defaultPriceId: string;
-  }
+  product: InfoProducts
 }
 
 export default function Product({ product }: ProductProps) {
