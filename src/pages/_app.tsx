@@ -10,15 +10,12 @@ import { HeaderButton, Container, Header } from '@/styles/pages/app'
 import * as Dialog from '@radix-ui/react-dialog';
 import { ShoppingCart } from '@/components/ShoppingCart'
 import { useRouter } from 'next/router'
-
+import { CartContextProvider } from '@/contexts/CartContext'
 
 globalStyles()
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
-
-  console.log(router);
-
 
   return (
     <Container>
@@ -28,7 +25,11 @@ export default function App({ Component, pageProps }: AppProps) {
           <Image src={logoImg} alt='' />
           <Dialog.Root>
             <Dialog.Trigger asChild>
-              <HeaderButton><Handbag size={24} weight='bold' /></HeaderButton>
+              <HeaderButton>
+                <Handbag size={24} weight='bold' />
+                {/* {cartQuantity >= 1 && } */}
+                <span>1</span>
+              </HeaderButton>
             </Dialog.Trigger>
             <ShoppingCart />
           </Dialog.Root>
@@ -42,8 +43,9 @@ export default function App({ Component, pageProps }: AppProps) {
         </Header>
       }
 
-      <Component {...pageProps} />
+      <CartContextProvider>
+        <Component {...pageProps} />
+      </CartContextProvider>
     </Container>
   )
 }
-

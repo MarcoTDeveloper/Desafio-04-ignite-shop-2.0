@@ -32,36 +32,6 @@ export function ShoppingCart() {
           </ProductInfo>
         </Product>
 
-        <Product>
-          <ImageContainer>
-            <Image src={imageTest} width={94.8} height={94.8} alt="" />
-          </ImageContainer>
-
-          <ProductInfo>
-            <span>Camiseta Beyond the Limits</span>
-            <strong>R$ 99,90</strong>
-
-            <button>
-              Remover
-            </button>
-          </ProductInfo>
-        </Product>
-
-        <Product>
-          <ImageContainer>
-            <Image src={imageTest} width={94.8} height={94.8} alt="" />
-          </ImageContainer>
-
-          <ProductInfo>
-            <span>Camiseta Beyond the Limits</span>
-            <strong>R$ 99,90</strong>
-
-            <button>
-              Remover
-            </button>
-          </ProductInfo>
-        </Product>
-
         <Values>
           <div>
             <p>Quantidade</p>
