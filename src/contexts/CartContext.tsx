@@ -11,22 +11,34 @@ export interface InfoProducts {
 }
 
 interface CartContextType {
-  cartItem: InfoProducts[]
+  cartItems: InfoProducts[];
+  addProductsInCart: (product: InfoProducts) => void;
+  productAlreadyExists: (productId: string) => boolean;
 }
 
 interface CartContextProviderProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 export const CartContext = createContext({} as CartContextType)
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
-  const [cartItem, setCartItem] = useState<InfoProducts[]>([])
+  const [cartItems, setCartItem] = useState<InfoProducts[]>([])
+
+  function addProductsInCart(product: InfoProducts) {
+    setCartItem((state) => [...state, product])
+  }
+
+  function productAlreadyExists(productId: string) {
+    return cartItems.some((product) => product.id === productId)
+  }
 
   return (
     <CartContext.Provider
       value={{
-        cartItem,
+        cartItems,
+        addProductsInCart,
+        productAlreadyExists,
       }}
     >
       <>

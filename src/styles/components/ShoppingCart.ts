@@ -147,3 +147,27 @@ export const FinalizePurchaseButton = styled('button', {
     color: '$white',
   }
 })
+
+export const NoItemsInCart = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gap: '0.5rem',
+  width: 150,
+  borderRadius: 7,
+  padding: 16,
+  margin: '9rem auto',
+
+  outline: '3px solid $gray3',
+
+  svg: {
+    color: '$gray3'
+  },
+
+  span: {
+    color: '$gray3',
+    fontSize: '$lg',
+    fontFamily: 'serif'
+  }
+
+})

@@ -8,12 +8,21 @@ import { GetStaticProps } from "next";
 import Link from "next/link";
 import Head from "next/head";
 import { InfoProducts } from "@/contexts/CartContext";
+import { useCart } from "@/hooks/useCart";
+import { MouseEvent } from "react";
 
 interface HomeProps {
   products: InfoProducts[]
 }
 
 export default function Home({ products }: HomeProps) {
+  const { addProductsInCart } = useCart()
+
+  function handleAddProductsInCart(e: MouseEvent<HTMLButtonElement>, product: InfoProducts) {
+    e.preventDefault()
+    addProductsInCart(product)
+  }
+
   const [emblaRef] = useEmblaCarousel({
     align: "start",
     skipSnaps: false,
@@ -42,7 +51,13 @@ export default function Home({ products }: HomeProps) {
                           <span>{product.price}</span>
                         </div>
 
-                        <button tabIndex={-1}>
+                        <button
+                          onClick={
+                            (e) => handleAddProductsInCart(e, product)
+                          }
+                          type="button"
+                          tabIndex={-1}
+                        >
                           <Handbag size={32} weight='bold' />
                         </button>
                       </footer>

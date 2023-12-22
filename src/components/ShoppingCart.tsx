@@ -1,11 +1,15 @@
-import { CloseButton, FinalizePurchaseButton, ImageContainer, Product, ProductInfo, ShoppingCartContent, Title, Values } from '@/styles/components/ShoppingCart';
+import { CloseButton, FinalizePurchaseButton, ImageContainer, NoItemsInCart, Product, ProductInfo, ShoppingCartContent, Title, Values } from '@/styles/components/ShoppingCart';
 import * as Dialog from '@radix-ui/react-dialog';
 import Image from 'next/image';
 
-import imageTest from '@/assets/+PLUS-T-shirttransparente 1.png'
-import { X } from 'phosphor-react';
+import { Handbag, X } from 'phosphor-react';
+import { useCart } from '@/hooks/useCart';
 
 export function ShoppingCart() {
+
+  const { cartItems } = useCart()
+  const cartQuantity = cartItems.length;
+
   return (
     <Dialog.Portal>
 
@@ -18,26 +22,35 @@ export function ShoppingCart() {
         <Title>Sacola de compras</Title>
 
         <section>
-          <Product>
-            <ImageContainer>
-              <Image src={imageTest} width={94.8} height={94.8} alt="" />
-            </ImageContainer>
+          {cartQuantity <= 0 &&
+            <NoItemsInCart>
+              <Handbag size={100} weight='thin' />
+              <span>sacola vazia</span>
+            </NoItemsInCart>
+          }
 
-            <ProductInfo>
-              <span>Camiseta Beyond the Limits</span>
-              <strong>R$ 99,90</strong>
+          {cartItems.map((cartItem) => (
+            <Product key={cartItem.id}>
+              <ImageContainer>
+                <Image src={cartItem.imageUrl} width={94.8} height={94.8} alt="" />
+              </ImageContainer>
 
-              <button>
-                Remover
-              </button>
-            </ProductInfo>
-          </Product>
+              <ProductInfo>
+                <span>{cartItem.name}</span>
+                <strong>{cartItem.price}</strong>
+
+                <button onClick={() => console.log('removeu')}>
+                  Remover
+                </button>
+              </ProductInfo>
+            </Product>
+          ))}
         </section>
 
         <Values>
           <div>
             <p>Quantidade</p>
-            <p>3 item</p>
+            <p>{cartQuantity} {cartQuantity > 1 ? 'itens' : 'item'}</p>
           </div>
 
           <div>
