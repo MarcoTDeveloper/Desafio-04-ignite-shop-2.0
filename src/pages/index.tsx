@@ -7,14 +7,10 @@ import Stripe from "stripe";
 import { GetStaticProps } from "next";
 import Link from "next/link";
 import Head from "next/head";
+import { InfoProducts } from "@/contexts/CartContext";
 
 interface HomeProps {
-  products: {
-    id: string;
-    name: string;
-    imageUrl: string;
-    price: string;
-  }[]
+  products: InfoProducts[]
 }
 
 export default function Home({ products }: HomeProps) {

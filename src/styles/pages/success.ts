@@ -7,6 +7,7 @@ export const SuccessContainer = styled('main', {
   justifyContent: 'center',
   margin: '0 auto',
   height: 656,
+  overflow: 'hidden',
 
   h1: {
     fontSize: '$2xl',
