@@ -17,20 +17,22 @@ export function ShoppingCart() {
 
         <Title>Sacola de compras</Title>
 
-        <Product>
-          <ImageContainer>
-            <Image src={imageTest} width={94.8} height={94.8} alt="" />
-          </ImageContainer>
+        <section>
+          <Product>
+            <ImageContainer>
+              <Image src={imageTest} width={94.8} height={94.8} alt="" />
+            </ImageContainer>
 
-          <ProductInfo>
-            <span>Camiseta Beyond the Limits</span>
-            <strong>R$ 99,90</strong>
+            <ProductInfo>
+              <span>Camiseta Beyond the Limits</span>
+              <strong>R$ 99,90</strong>
 
-            <button>
-              Remover
-            </button>
-          </ProductInfo>
-        </Product>
+              <button>
+                Remover
+              </button>
+            </ProductInfo>
+          </Product>
+        </section>
 
         <Values>
           <div>

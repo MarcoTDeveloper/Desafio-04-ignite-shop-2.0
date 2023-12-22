@@ -12,6 +12,11 @@ export const ShoppingCartContent = styled(Dialog.Content, {
   top: 0,
   right: 0,
   boxShadow: '-40px 3px 30px 0px rgba(0,0,0,0.5)',
+
+  section: {
+    height: '100%',
+    overflowY: 'auto'
+  }
 })
 
 export const CloseButton = styled(Dialog.Close, {
@@ -97,6 +102,7 @@ export const Values = styled('div', {
   marginTop: 'auto',
   display: 'flex',
   flexDirection: 'column',
+  paddingTop: '2rem',
 
   div: {
     display: 'flex',
