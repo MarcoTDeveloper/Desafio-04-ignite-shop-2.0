@@ -142,7 +142,12 @@ export const FinalizePurchaseButton = styled('button', {
   fontWeight: 'bold',
   lineHeight: 1.6,
 
-  '&:hover': {
+  '&:disabled': {
+    opacity: 0.6,
+    cursor: 'not-allowed'
+  },
+
+  '&:(:disabled):hover': {
     backgroundColor: '$green1',
     color: '$white',
   }

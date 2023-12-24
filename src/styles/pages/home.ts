@@ -73,7 +73,12 @@ export const Product = styled('div', {
       color: '$white',
       transition: '0.2s background-color',
 
-      '&:hover': {
+      '&:disabled': {
+        opacity: 0.7,
+        cursor: 'not-allowed'
+      },
+
+      '&:(:disabled):hover': {
         backgroundColor: '$green2',
       }
     },

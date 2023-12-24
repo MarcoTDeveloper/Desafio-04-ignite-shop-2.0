@@ -4,11 +4,37 @@ import Image from 'next/image';
 
 import { Handbag, X } from 'phosphor-react';
 import { useCart } from '@/hooks/useCart';
+import { useState } from 'react';
+import axios from 'axios';
 
 export function ShoppingCart() {
 
-  const { cartItems } = useCart()
+  const { cartItems, removeProductsFromCart, cartTotal } = useCart()
   const cartQuantity = cartItems.length;
+
+  const FormattedCartTotal = new Intl.NumberFormat('pt-Br', {
+    style: 'currency',
+    currency: 'BRl',
+  }).format(cartTotal);
+
+  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false)
+
+  async function handleCheckout() {
+    try {
+      setIsCreatingCheckoutSession(true)
+      
+      const response = await axios.post('/api/checkout', {
+        products: cartItems,
+      })
+
+      const { checkoutUrl } = response.data
+
+      window.location.href= checkoutUrl;
+    } catch {
+      setIsCreatingCheckoutSession(false)
+      alert('Falha no redirecionamento')
+    }
+  }
 
   return (
     <Dialog.Portal>
@@ -39,7 +65,7 @@ export function ShoppingCart() {
                 <span>{cartItem.name}</span>
                 <strong>{cartItem.price}</strong>
 
-                <button onClick={() => console.log('removeu')}>
+                <button onClick={() => removeProductsFromCart(cartItem.id)}>
                   Remover
                 </button>
               </ProductInfo>
@@ -50,16 +76,19 @@ export function ShoppingCart() {
         <Values>
           <div>
             <p>Quantidade</p>
-            <p>{cartQuantity} {cartQuantity > 1 ? 'itens' : 'item'}</p>
+            <p>{cartQuantity} {cartQuantity === 1 ? 'item' : 'itens'}</p>
           </div>
 
           <div>
             <span>Valor total</span>
-            <strong>R$ 299,70</strong>
+            <strong>{FormattedCartTotal}</strong>
           </div>
         </Values>
 
-        <FinalizePurchaseButton>
+        <FinalizePurchaseButton
+          onClick={handleCheckout}
+          disabled={isCreatingCheckoutSession || cartQuantity <= 0}
+        >
           Finalizar compra
         </FinalizePurchaseButton>
       </ShoppingCartContent>

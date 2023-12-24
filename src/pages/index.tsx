@@ -16,7 +16,7 @@ interface HomeProps {
 }
 
 export default function Home({ products }: HomeProps) {
-  const { addProductsInCart } = useCart()
+  const { addProductsInCart, productAlreadyExists } = useCart()
 
   function handleAddProductsInCart(e: MouseEvent<HTMLButtonElement>, product: InfoProducts) {
     e.preventDefault()
@@ -55,6 +55,7 @@ export default function Home({ products }: HomeProps) {
                           onClick={
                             (e) => handleAddProductsInCart(e, product)
                           }
+                          disabled={productAlreadyExists(product.id)}
                           type="button"
                           tabIndex={-1}
                         >
@@ -88,7 +89,9 @@ export const getStaticProps: GetStaticProps = async () => {
       price: new Intl.NumberFormat('pr-BR', {
         style: 'currency',
         currency: 'BRL',
-      }).format(price.unit_amount! / 100,)
+      }).format(price.unit_amount! / 100),
+      numberPrice: price.unit_amount! / 100,
+      defaultPriceId: price.id,
     }
   })
 
